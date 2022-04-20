@@ -1,3 +1,7 @@
 __pycache__/
 ExtractedSlides/
 frameHashData.txt
+/venv
+/ExtractedSlides
+/videos
+*.mp4

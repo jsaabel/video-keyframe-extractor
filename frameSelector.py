@@ -1,7 +1,7 @@
 # Script for analysing the comparison value and to determine threshold
 from matplotlib import pyplot as plt
 
-def frameSelector() -> list[float]:
+def frameSelector():
     frameHashValue, framePosition= [], []
     with open('frameHashData.txt', 'r') as f:
         for line in f:
