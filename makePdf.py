@@ -3,7 +3,7 @@ import img2pdf
 
 def makePdf(PATH):
     images= []
-    for fname in os.listdir(PATH):
+    for fname in sorted(os.listdir(PATH)): # added sorted
         if not fname.endswith('.jpg'):
             continue
         imgPath= os.path.join(PATH, fname)

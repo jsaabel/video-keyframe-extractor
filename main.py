@@ -5,18 +5,25 @@ import frameExtractor
 import makePdf
 import downloader
 
-FRAMES_SKIP= 100 # Increase value for faster processing but may lead to skipped slides
-FOLDER_PATH= os.path.join(os.getcwd(), 'ExtractedSlides') # Folder where slide images and merged pdf will be stored
-## EDIT THIS BEFORE RUNNING
-VIDEO_PATH= "/home/jonas/Desktop/video-keyframe-extractor/Think%20for%20yourself%20Lecture%201%20part%204.mp4" # Absolute path of video for running script using only / as separator
+# downloader.main()
 
-downloader.main()
+video_folders = os.listdir("videos")
+for folder in video_folders:
+    video_files = os.listdir(f"videos/{folder}")
+    for video in video_files:
+        print(f"Current file: {video}")
+        path_to_file = f"videos/{folder}/{video}"
 
-# videoAnalysis.videoAnalysis(FRAMES_SKIP, VIDEO_PATH)
-# selectedFrames= frameSelector.frameSelector()
-# frameExtractor.frameExtractor(FOLDER_PATH, VIDEO_PATH, selectedFrames)
-# print('Review extracted slides and delete duplicates or wrong selections.')
-# ch= input('Press any key to create PDF or Q to exit... ')
-# if ch=='Q' or ch=='q':
-#     exit()
-# makePdf.makePdf(FOLDER_PATH)
+        
+        FRAMES_SKIP=200  # Increase value for faster processing but may lead to skipped slides
+        FOLDER_PATH= f"ExtractedSlides/{folder}/{video[:-4]}" 
+        try:
+            os.makedirs(FOLDER_PATH)
+        except FileExistsError:
+            pass
+        VIDEO_PATH= path_to_file
+
+        videoAnalysis.videoAnalysis(FRAMES_SKIP, VIDEO_PATH)
+        selectedFrames= frameSelector.frameSelector()
+        frameExtractor.frameExtractor(FOLDER_PATH, VIDEO_PATH, selectedFrames)
+        makePdf.makePdf(FOLDER_PATH)

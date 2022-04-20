@@ -20,7 +20,10 @@ def frameExtractor(PATH, VIDEO_PATH, selectedFrames=None):
         
         print('Selected Frame: {} @ {} seconds'.format(i+1, vid.get(cv2.CAP_PROP_POS_MSEC)/1000))
 
-        cv2.imwrite(os.path.join(PATH, 'Frame{}.jpg'.format(i+1)), frame)
+        # cv2.imwrite(os.path.join(PATH, 'Frame{}.jpg'.format(i+1)), frame)
+        number = f"{i+1}"
+        number_z = number.zfill(3)
+        cv2.imwrite(os.path.join(PATH, f"Frame{number_z}.jpg"), frame)
 
     vid.release()
 
