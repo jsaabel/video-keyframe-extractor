@@ -5,7 +5,7 @@ import frameExtractor
 import makePdf
 import downloader
 
-# downloader.main()
+# downloader.main() # edit downloader.py to fit your use case and comment this in if needed
 
 video_folders = os.listdir("videos")
 for folder in video_folders:
@@ -15,7 +15,7 @@ for folder in video_folders:
         path_to_file = f"videos/{folder}/{video}"
 
         
-        FRAMES_SKIP=200  # Increase value for faster processing but may lead to skipped slides
+        FRAMES_SKIP=30  # Increase value for faster processing but may lead to skipped slides
         FOLDER_PATH= f"ExtractedSlides/{folder}/{video[:-4]}" 
         try:
             os.makedirs(FOLDER_PATH)
